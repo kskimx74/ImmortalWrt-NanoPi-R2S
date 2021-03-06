@@ -1,0 +1,36 @@
+name: NanoPi R2S ImmortalWrt
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 15 */3 * *
+jobs:
+  ImmortalWrt-18_06:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Init Building Dependencies
+      env:
+        DEBIAN_FRONTEND: noninteractive
+
+  Cleanup-Old-Artifacts:
+#    needs: [ImmortalWrt-18_06,ImmortalWrt-Snapshot]
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Cleanup Old Action Artifacts
+      uses: kolpav/purge-artifacts-action@v1
+      with:
+        token: ${{ github.token }}
+        expire-in: 3d
+  Cleanup-Workflow-Runs:
+    needs: Cleanup-Old-Artifacts
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Cleanup Workflow Runs
+        uses: GitRML/delete-workflow-runs@v1.2.1
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 3
