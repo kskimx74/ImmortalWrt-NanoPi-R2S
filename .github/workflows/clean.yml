@@ -1,4 +1,4 @@
-name: NanoPi R2S ImmortalWrt
+name: Cleanup-Old-Artifacts
 
 on:
   repository_dispatch:
