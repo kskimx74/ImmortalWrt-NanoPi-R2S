@@ -28,6 +28,9 @@ jobs:
           retain_days: 3
           
   Cleanup-old-Releases:
+    needs: Cleanup-Workflow-Runs
+    runs-on: ubuntu-18.04
+    steps:
       - name: Cleanup-old-Releases
         uses: dev-drprasad/delete-older-releases@v0.1.0
         with:
