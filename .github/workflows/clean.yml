@@ -4,7 +4,7 @@ on:
   repository_dispatch:
   workflow_dispatch:
   schedule:
-    - cron: 0 15 */3 * *
+    - cron: 0 18 * * *
 jobs: 
   Cleanup-Old-Artifacts:
 #    needs: [ImmortalWrt-18_06,ImmortalWrt-Snapshot]
