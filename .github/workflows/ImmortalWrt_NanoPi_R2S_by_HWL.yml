@@ -78,9 +78,9 @@ jobs:
     - name: Generate release tag
       id: tag
       run: |
-        echo "::set-output name=release_tag::$(date +"%F-%H%M%S")-immortalwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r2s"
+        echo "::set-output name=release_tag::$(date +"%F-%H%M%S")-immortalwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r2s-modyfi-by-hwl"
         echo "::set-output name=release_date::$(date +"%F-%H%M%S")"
-        cat /home/runner/immortalwrt-18.06-sha256sums >> release.txt
+        sed -n '3,4'p  /home/runner/immortalwrt-18.06-sha256sums >> release.txt
         echo "::set-output name=status::success"
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
@@ -162,9 +162,9 @@ jobs:
     - name: Generate release tag
       id: tag
       run: |
-        echo "::set-output name=release_tag::$(date +"%F-%H%M%S")-immortalwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s"
+        echo "::set-output name=release_tag::$(date +"%F-%H%M%S")-immortalwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-modyfi-by-hwl"
         echo "::set-output name=release_date::$(date +"%F-%H%M%S")"
-        cat /home/runner/immortalwrt-snapshot-sha256sums >> release.txt
+        sed -n '3,4'p /home/runner/immortalwrt-snapshot-sha256sums >> release.txt
         echo "::set-output name=status::success"
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
