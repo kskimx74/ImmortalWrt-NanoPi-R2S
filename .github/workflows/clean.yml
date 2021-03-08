@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: 0 18 * * *
+    
 jobs: 
   Cleanup-Old-Artifacts:
-#    needs: [ImmortalWrt-18_06,ImmortalWrt-Snapshot]
     runs-on: ubuntu-18.04
     steps:
     - name: Cleanup Old Action Artifacts
@@ -15,6 +15,7 @@ jobs:
       with:
         token: ${{ github.token }}
         expire-in: 3d
+        
   Cleanup-Workflow-Runs:
     needs: Cleanup-Old-Artifacts
     runs-on: ubuntu-18.04
@@ -25,10 +26,13 @@ jobs:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
           retain_days: 3
-      - name: Remove old Releases
+          
+  Cleanup-old-Releases:
+      - name: Cleanup-old-Releases
         uses: dev-drprasad/delete-older-releases@v0.1.0
         with:
           keep_latest: 7
           delete_tags: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
