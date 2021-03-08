@@ -14,7 +14,7 @@ jobs:
       uses: kolpav/purge-artifacts-action@v1
       with:
         token: ${{ github.token }}
-        expire-in: 1d
+        expire-in: 3d
   Cleanup-Workflow-Runs:
     needs: Cleanup-Old-Artifacts
     runs-on: ubuntu-18.04
@@ -24,11 +24,11 @@ jobs:
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
-          retain_days: 1
+          retain_days: 3
       - name: Remove old Releases
         uses: dev-drprasad/delete-older-releases@v0.1.0
         with:
-          keep_latest: 1
+          keep_latest: 7
           delete_tags: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
