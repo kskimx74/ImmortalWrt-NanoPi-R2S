@@ -96,6 +96,15 @@ jobs:
           /home/runner/immortalwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz
           /home/runner/immortalwrt-18.06-sha256sums
 
+    - name: Immortalwrt-18.06 Actions Notice
+      uses: appleboy/telegram-action@master
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        args: The Immortalwrt-18.06  Nanopi-r2s-modyfi-by-hwl Firmware Compiled successfully!
+
+
   ImmortalWrt-Snapshot:
     runs-on: ubuntu-18.04
     steps:
@@ -179,3 +188,11 @@ jobs:
           /home/runner/immortalwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz
           /home/runner/immortalwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz
           /home/runner/immortalwrt-snapshot-sha256sums
+
+    - name: Immortalwrt-snapshot Actions Notice
+      uses: appleboy/telegram-action@master
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        args: The Immortalwrt-snapshot Nanopi-r2s-modyfi-by-hwl Firmware Compiled successfully!
