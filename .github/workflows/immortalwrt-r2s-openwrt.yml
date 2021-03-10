@@ -1,4 +1,4 @@
-name: ImmortalWrt NanoPi R2S 
+name: ImmortalWrt NanoPi R2S
 
 on:
   workflow_dispatch:
